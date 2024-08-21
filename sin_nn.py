@@ -67,7 +67,7 @@ def build_sin_model(
 
   input_layer = Input(
       name='input',
-      shape=x.shape[1]
+      shape=[x.shape[1]]
       )
 
   frequency_layer = Dense(
@@ -197,7 +197,7 @@ def build_multiwave_model(x, y, waves: list, learning_rate=10**-1, wavelen=365.2
       wave_models = {}
       input_layer = tf.keras.layers.Input(
             name='input',
-            shape=x.shape[1]
+            shape=[x.shape[1]]
             )
       for i in waves:
             wave_models[i] = build_sin_model(
