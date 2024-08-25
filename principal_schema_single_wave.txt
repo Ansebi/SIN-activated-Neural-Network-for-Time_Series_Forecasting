@@ -1,0 +1,42 @@
+Model: "Sin-wave_model_with_linear_component"
+__________________________________________________________________________________________________
+ Layer (type)                Output Shape                 Param #   Connected to                  
+==================================================================================================
+ input (InputLayer)          [(None, 1)]                  0         []                            
+                                                                                                  
+ phase_shift (Dense)         (None, 1)                    1         ['input[0][0]']               
+                                                                                                  
+ frequency (Dense)           (None, 1)                    1         ['input[0][0]']               
+                                                                                                  
+ phase_shift_amplifier (Den  (None, 1)                    1         ['phase_shift[0][0]']         
+ se)                                                                                              
+                                                                                                  
+ linear_rotation (Dense)     (None, 1)                    1         ['input[0][0]']               
+                                                                                                  
+ y_shift (Dense)             (None, 1)                    1         ['input[0][0]']               
+                                                                                                  
+ sin_input (Add)             (None, 1)                    0         ['frequency[0][0]',           
+                                                                     'phase_shift_amplifier[0][0]'
+                                                                    ]                             
+                                                                                                  
+ linear_rotation_handler (D  (None, 1)                    1         ['linear_rotation[0][0]']     
+ ense)                                                                                            
+                                                                                                  
+ y_shift_amplifier (Dense)   (None, 1)                    1         ['y_shift[0][0]']             
+                                                                                                  
+ sin (Dense)                 (None, 1)                    1         ['sin_input[0][0]']           
+                                                                                                  
+ linear_component (Add)      (None, 1)                    0         ['linear_rotation_handler[0][0
+                                                                    ]',                           
+                                                                     'y_shift_amplifier[0][0]']   
+                                                                                                  
+ amplitude (Dense)           (None, 1)                    1         ['sin[0][0]']                 
+                                                                                                  
+ output (Add)                (None, 1)                    0         ['linear_component[0][0]',    
+                                                                     'amplitude[0][0]']           
+                                                                                                  
+==================================================================================================
+Total params: 9 (36.00 Byte)
+Trainable params: 7 (28.00 Byte)
+Non-trainable params: 2 (8.00 Byte)
+__________________________________________________________________________________________________
